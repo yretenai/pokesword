@@ -19,7 +19,12 @@ add_library(gflib3 OBJECT
 
 target_compile_options(gflib3 PRIVATE -fno-exceptions)
 target_compile_options(gflib3 PRIVATE -fno-strict-aliasing)
-target_compile_options(gflib3 PRIVATE -Wno-invalid-offsetof)
+if(MSVC)
+  target_compile_options(pokesword PRIVATE -Wall)
+else()
+  target_compile_options(pokesword PRIVATE -Wall -Wextra)
+  target_compile_options(pokesword PRIVATE -Wno-invalid-offsetof)
+endif()
 target_include_directories(gflib3 PUBLIC include/)
 
 if(NOT TARGET NintendoSDK)
