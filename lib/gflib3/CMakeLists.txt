@@ -15,7 +15,9 @@ add_library(gflib3 OBJECT
 
   include/core/singleton.h
   src/core/singleton.cpp
-)
+
+  include/text/msgdata.h
+  src/text/msgdata.cpp)
 
 target_compile_options(gflib3 PRIVATE -fno-exceptions)
 target_compile_options(gflib3 PRIVATE -fno-strict-aliasing)
