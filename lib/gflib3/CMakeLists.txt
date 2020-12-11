@@ -19,14 +19,15 @@ add_library(gflib3 OBJECT
   include/text/msgdata.h
   src/text/msgdata.cpp)
 
-target_compile_options(gflib3 PRIVATE -fno-exceptions)
-target_compile_options(gflib3 PRIVATE -fno-strict-aliasing)
 if(MSVC)
-  target_compile_options(pokesword PRIVATE -Wall)
+  target_compile_options(gflib3 PRIVATE -Wall)
 else()
-  target_compile_options(pokesword PRIVATE -Wall -Wextra)
-  target_compile_options(pokesword PRIVATE -Wno-invalid-offsetof)
+  target_compile_options(gflib3 PRIVATE -Wall -Wextra)
+  target_compile_options(gflib3 PRIVATE -Wno-invalid-offsetof)
+  target_compile_options(gflib3 PRIVATE -fno-exceptions)
+  target_compile_options(gflib3 PRIVATE -fno-strict-aliasing)
 endif()
+
 target_include_directories(gflib3 PUBLIC include/)
 
 if(NOT TARGET NintendoSDK)
