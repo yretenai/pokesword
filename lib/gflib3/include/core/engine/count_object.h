@@ -1,3 +1,5 @@
+#pragma once
+
 namespace gfl::engine::impl {
     struct CountObject {
 

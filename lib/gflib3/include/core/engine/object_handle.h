@@ -1,3 +1,5 @@
+#pragma once
+
 #include "gflib3/include/boost/smart_ptr/intrusive_ptr.hpp"
 #include "gflib3/include/core/engine/count_object.h"
 

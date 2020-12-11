@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <NintendoSDK/include/nn/types.h>
 #include "gflib3/include/core/allocator.h"

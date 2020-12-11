@@ -1,3 +1,5 @@
+#pragma once
+
 #include <NintendoSDK/include/nn/types.h>
 #include "gflib3/include/mem/memory_resource.h"
 

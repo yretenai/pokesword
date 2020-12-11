@@ -1,3 +1,5 @@
+#pragma once
+
 #include "gflib3/include/core/engine/object_handle.h"
 
 namespace gfl::engine {
