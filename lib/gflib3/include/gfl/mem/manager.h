@@ -1,8 +1,8 @@
 #pragma once
 
 #include <array>
-#include "NintendoSDK/include/nn/diag.h"
-#include "gflib3/include/mem/memory_resource.h"
+#include <nn/diag.h>
+#include <gfl/mem/memory_resource.h>
 
 namespace gfl::mem {
 

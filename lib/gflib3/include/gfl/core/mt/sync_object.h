@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gflib3/include/core/engine/memory_object.h"
+#include <gfl/core/engine/memory_object.h>
 
 namespace gfl::mt {
 

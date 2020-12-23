@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <NintendoSDK/include/nn/types.h>
-#include "gflib3/include/core/allocator.h"
+#include <nn/types.h>
+#include <gfl/core/allocator.h>
 
 namespace gfl::container {
 

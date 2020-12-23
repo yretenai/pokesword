@@ -1,11 +1,11 @@
 #pragma once
 
-#include <NintendoSDK/include/nn/types.h>
-#include "gflib3/include/mem/memory_resource.h"
+#include <nn/types.h>
+#include <gfl/mem/memory_resource.h>
 
 namespace gfl {
 
-template <class T, size_t U>
+template <typename T, size_t U, const size_t M>
 struct Allocator {
     gfl::mem::MemoryResource* m_resource;
     const char* m_ownerFilePath;

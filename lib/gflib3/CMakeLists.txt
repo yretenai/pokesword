@@ -1,23 +1,28 @@
 project(gflib3 CXX ASM)
 
 add_library(gflib3 OBJECT
+        include/gfl/macros.h
 
-  include/container/dynamic_array.h
-  include/core/allocator.h
-  include/core/engine/count_object.h
-  include/core/engine/memory_object.h
-  include/core/engine/object_handle.h
-  include/core/mt/sync_object.h
-  include/mem/manager.h
+        include/gfl/container/dynamic_array.h
+        include/gfl/core/allocator.h
+        include/gfl/core/engine/count_object.h
+        include/gfl/core/engine/memory_object.h
+        include/gfl/core/engine/object_handle.h
+        include/gfl/core/mt/sync_object.h
+        include/gfl/mem/manager.h
 
-  include/mem/memory_resource.h
-  src/mem/memory_resource.cpp
+        include/gfl/mem/memory_resource.h
+        src/mem/memory_resource.cpp
 
-  include/core/singleton.h
-  src/core/singleton.cpp
+        include/gfl/core/singleton.h
+        src/core/singleton.cpp
 
-  include/text/msgdata.h
-  src/text/msgdata.cpp)
+        include/gfl/mem/mem.h
+        src/mem/mem.cpp
+        include/gfl/mem/internal.h
+
+        include/gfl/text/msgdata.h
+        src/text/msgdata.cpp include/gfl/mem/mutex.hpp)
 
 if(MSVC)
   target_compile_options(gflib3 PRIVATE -Wall)
