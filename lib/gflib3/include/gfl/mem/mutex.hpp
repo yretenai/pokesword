@@ -10,7 +10,7 @@ namespace gfl::mem {
     GFL_DELETE_COPY_CONSTRUCTOR(Mutex);
 
     private:
-        nn::os::MutexType GUARDED_VAR(mutex_lock);
+        nn::os::MutexType mutex_lock;
     public:
         Mutex() noexcept = default;
 
@@ -18,25 +18,25 @@ namespace gfl::mem {
             FinalizeMutex(&mutex_lock);
         }
 
-        inline void lock() noexcept EXCLUSIVE_LOCK_FUNCTION() SHARED_LOCK_FUNCTION() {
+        inline __attribute__((always_inline)) void lock() noexcept EXCLUSIVE_LOCK_FUNCTION() SHARED_LOCK_FUNCTION() {
             if(mutex_lock.curState == 0) {
                 nn::os::InitializeMutex(&mutex_lock, false, 0); // trampolined.
             }
             nn::os::LockMutex(&mutex_lock);
         }
 
-        inline void unlock() noexcept UNLOCK_FUNCTION() {
+        inline __attribute__((always_inline)) void unlock() noexcept UNLOCK_FUNCTION() {
             nn::os::UnlockMutex(&mutex_lock);
         }
 
-        [[nodiscard]] inline bool try_lock() noexcept EXCLUSIVE_TRYLOCK_FUNCTION(true) SHARED_TRYLOCK_FUNCTION(true) {
+        [[nodiscard]] __attribute__((always_inline)) inline bool try_lock() noexcept EXCLUSIVE_TRYLOCK_FUNCTION(true) SHARED_TRYLOCK_FUNCTION(true) {
             if(mutex_lock.curState == 0) {
                 nn::os::InitializeMutex(&mutex_lock, false, 0); // trampolined.
             }
             return nn::os::TryLockMutex(&mutex_lock);
         }
 
-        [[nodiscard]] inline bool is_locked_by_current_thread() const noexcept {
+        [[nodiscard]] __attribute__((always_inline)) inline bool is_locked_by_current_thread() const noexcept {
             return nn::os::IsMutexLockedByCurrentThread(&mutex_lock);
         }
     };

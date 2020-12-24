@@ -8,7 +8,7 @@
 
 namespace gfl::mem::impl {
     namespace DefaultResourceLock {
-        extern gfl::mem::Mutex GUARDED_VAR(g_default_resource_lock);
+        extern gfl::mem::Mutex g_default_resource_lock;
     }
 
     // extern GlobalHeapResourceImpl g_debug_heap_resource;

@@ -73,3 +73,9 @@
 
 #define NO_THREAD_SAFETY_ANALYSIS \
   THREAD_ANNOTATION_ATTRIBUTE__(no_thread_safety_analysis)
+
+#define LOCK_MUTEX(mutex) mutex.lock()
+
+#define TRY_LOCK_MUTEX(mutex) mutex.try_lock()
+
+#define UNLOCK_MUTEX(mutex) mutex.unlock()

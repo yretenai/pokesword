@@ -3,7 +3,7 @@
 
 namespace gfl::mem {
     namespace impl::DefaultResourceLock {
-        gfl::mem::Mutex GUARDED_VAR(g_default_resource_lock);
+        gfl::mem::Mutex g_default_resource_lock = Mutex();
     }
 
     using gfl::mem::impl::DefaultResourceLock::g_default_resource_lock;
@@ -21,7 +21,7 @@ namespace gfl::mem {
             a = (a >> 4 & HAMMING_A) + (a & HAMMING_A);
             a = (a >> 8 & HAMMING_B) + (a & HAMMING_B);
             u64 b = (a >> 0x10 & HAMMING_C) + (a & HAMMING_C);
-            return 0x40 - ((b >> 0x20) + b);
+            return 0x40 - ((s32)((u64)b >> 0x20) + (s32)b);
         }
         return 0xff;
     }
@@ -37,13 +37,16 @@ namespace gfl::mem {
             b = (b >> 2 & HAMMING_M2) + (b & HAMMING_M2);
             b = (b >> 4 & HAMMING_A) + (b & HAMMING_A);
             u64 c = (b >> 8 & HAMMING_B) + (b & HAMMING_B);
-            return (c >> 0x10) + (c & 0x1f) + 0xff;
+            return (s32)(c >> 0x10) + ((u32)c & 0x1f) + 0xff;
         }
 
         return 0xff;
     }
 
     bool IsEnableGlobalAllocationLogging() EXCLUSIVE_LOCKS_REQUIRED(g_default_resource_lock) {
-        return impl::g_is_enable_logging;
+        LOCK_MUTEX(g_default_resource_lock);
+        auto value = impl::g_is_enable_logging;
+        UNLOCK_MUTEX(g_default_resource_lock);
+        return value;
     }
 }

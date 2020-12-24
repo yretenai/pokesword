@@ -24,14 +24,10 @@ add_library(gflib3 OBJECT
         include/gfl/text/msgdata.h
         src/text/msgdata.cpp include/gfl/mem/mutex.hpp)
 
-if(MSVC)
-  target_compile_options(gflib3 PRIVATE -Wall)
-else()
-  target_compile_options(gflib3 PRIVATE -Wall -Wextra)
-  target_compile_options(gflib3 PRIVATE -Wno-invalid-offsetof)
-  target_compile_options(gflib3 PRIVATE -fno-exceptions)
-  target_compile_options(gflib3 PRIVATE -fno-strict-aliasing)
-endif()
+target_compile_options(gflib3 PRIVATE -Wall -Wextra -fstack-protector)
+target_compile_options(gflib3 PRIVATE -Wno-invalid-offsetof)
+target_compile_options(gflib3 PRIVATE -fno-exceptions)
+target_compile_options(gflib3 PRIVATE -fno-strict-aliasing)
 
 target_include_directories(gflib3 PUBLIC include/)
 
